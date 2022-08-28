@@ -111,13 +111,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F12941F528BB973300B727E1 /* Models */ = {
+		F12941F528BB973300B727E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				F12941F328BB972E00B727E1 /* WeatherData.swift */,
 				F12941F128BB972400B727E1 /* OpenWetherMapController.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F157013528B8D29800D2C2DD /* Managers */ = {
@@ -151,7 +151,7 @@
 		F157013A28B8EF8B00D2C2DD /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				F12941F528BB973300B727E1 /* Models */,
+				F12941F528BB973300B727E1 /* Model */,
 				F1EE36F328B4D096004D5010 /* ViewModel */,
 				F1DE75CF28B8CBA200CAC600 /* SubViews */,
 				F157013828B8EEF700D2C2DD /* MainViews */,
