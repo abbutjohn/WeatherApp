@@ -9,7 +9,7 @@ import Combine
 @testable import WeatherApp
 
 
-class WeatherMock: OpenWetherMapContainerProtocol {
+class WeatherMock: OpenWeatherMapContainerProtocol {
     
     var result:  AnyPublisher<WeatherData, APIError>!
 

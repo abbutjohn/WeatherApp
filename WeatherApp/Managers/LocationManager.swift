@@ -17,13 +17,29 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     override init() {
         super.init()
-        
         manager.delegate = self
+    }
+    
+    func requestAlertForLocation() {
+        isLoading = true
+        manager.requestWhenInUseAuthorization()
+        
     }
     
     func requestLocation() {
         isLoading = true
         manager.requestLocation()
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        switch status {
+        case .authorizedWhenInUse:
+            manager.requestLocation()
+        default: break
+        }
+       
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

@@ -37,7 +37,8 @@ final class WeatherViewModel: ObservableObject {
         
     func getData(lat : String, long: String)  {
         
-        isLoading = true
+        self.isLoading = true
+        self.weatherData = []
         
         cancellable = weatherMapController.getWetherData(for: lat, long: long)
             .receive(on: DispatchQueue.main)
@@ -64,7 +65,7 @@ final class WeatherViewModel: ObservableObject {
                     self?.feelsLikeTeprature     =      String(format: "%.2f", result.main?.feels_like ?? 0.0)
                     self?.humidity               =      String(format: "%.2f", result.main?.humidity ?? 0.0)
                     self?.wind                   =      String(format: "%.2f", result.wind?.speed ?? 0.0)
-                    self?.weatherData[0]         =      result
+                    self?.weatherData.append(result)
                 }
                 
                 self?.isLoading = false

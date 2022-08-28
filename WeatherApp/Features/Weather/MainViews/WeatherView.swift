@@ -35,10 +35,14 @@ struct WeatherView: View {
                     VStack(alignment: .trailing, spacing: 5) {
                         
                         Button {
+                            
+                            //Update Location
                             locationManager.requestLocation()
+                            
                         } label: {
                             Image(systemName: "arrow.clockwise.circle")
                                 .font(.title)
+                                .foregroundColor(.white)
                         }
                         
                     }
@@ -65,7 +69,7 @@ struct WeatherView: View {
                         
                         Spacer()
                         
-                        Text(viewModel.feelsLikeTeprature + "°")
+                        Text(viewModel.currentTemprature + "°")
                             .font(.system(size: 30))
                             .fontWeight(.bold)
                             .padding()
@@ -126,17 +130,30 @@ struct WeatherView: View {
                 LoadingView()
             }
         }
-        .onAppear(){
+        .onAppear(perform: {
             
-            if let location = $locationManager.location.wrappedValue {
+            performFetch()
+        })
+        .onReceive(locationManager.$isLoading, perform: { value in
+            
+            if !value {
                 
-                viewModel.getData(lat: "\(location.latitude)", long: "\( location.longitude)")
-                
+                performFetch()
             }
-        }
+            
+        })
         .edgesIgnoringSafeArea(.bottom)
         .background(Color.cyan)
         .preferredColorScheme(.dark)
+    }
+    
+    func performFetch() {
+        
+        if let location = $locationManager.location.wrappedValue{
+            
+            viewModel.getData(lat: "\(location.latitude)", long: "\( location.longitude)")
+            
+        }
     }
 
 }

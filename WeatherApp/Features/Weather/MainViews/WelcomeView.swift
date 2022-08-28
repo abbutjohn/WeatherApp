@@ -7,8 +7,6 @@
 
 
 import SwiftUI
-import CoreLocationUI
-
 
 struct WelcomeView: View {
     
@@ -16,6 +14,8 @@ struct WelcomeView: View {
 
     var body: some View {
         VStack {
+            
+            
             VStack(spacing: 20) {
                 Text("Welcome to the Weather App")
                     .bold()
@@ -26,15 +26,31 @@ struct WelcomeView: View {
             }
             .multilineTextAlignment(.center)
             .padding()
-
             
-            // LocationButton from CoreLocationUI framework imported above, allows us to requestionLocation
-            LocationButton(.shareCurrentLocation) {
-                locationManager.requestLocation()
+        
+            Button {
+                
+                locationManager.requestAlertForLocation()
+                
+            } label: {
+                
+                HStack{
+                    
+                    Image(systemName: "location.circle")
+                        .font(.title)
+                        .foregroundColor(.white)
+                    
+                    Text("Share my Location")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }
+                .padding(.all, 8)
+                .background(.blue)
+                .cornerRadius(20.0)
             }
-            .cornerRadius(30)
-            .symbolVariant(.fill)
-            .foregroundColor(.white)
+            .padding()
+  
+    
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
